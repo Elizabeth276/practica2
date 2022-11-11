@@ -9,23 +9,28 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final txtUser = TextField(
-    decoration: InputDecoration(
-      hintText: 'Introduce el usuario',
-      label: Text('Correo Electrónico'),
-    ),
-  );
-
-  final txtPwd = TextField(
-    obscureText: true,
-    decoration: InputDecoration(
-      hintText: 'Introduce el password',
-      label: Text('Contraseña'),
-    ),
-  );
+  TextEditingController txtConUser = TextEditingController();
+  TextEditingController txtConPwd = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final txtUser = TextField(
+      controller: txtConUser,
+      decoration: InputDecoration(
+        hintText: 'Introduce el usuario',
+        label: Text('Correo Electrónico'),
+      ),
+    );
+
+    final txtPwd = TextField(
+      controller: txtConPwd,
+      obscureText: true,
+      decoration: InputDecoration(
+        hintText: 'Introduce el password',
+        label: Text('Contraseña'),
+      ),
+    );
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -70,7 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
               right: MediaQuery.of(context).size.width / 20,
               child: GestureDetector(
                 onTap: () {
-                  print('hola');
+                  //print('Valor de la caja ${txtConUser.text}');
+                  Navigator.pushNamed(context, '/dash');
                 },
                 child: Image.asset('assets/bloque.png',
                     height: MediaQuery.of(context).size.width / 5),
