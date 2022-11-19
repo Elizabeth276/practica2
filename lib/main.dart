@@ -3,7 +3,7 @@ import 'package:practica1/screens/dashboard_screen.dart';
 import 'package:practica1/screens/login_screen.dart';
 import 'package:practica1/screens/splash_screen.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
