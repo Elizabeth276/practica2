@@ -10,6 +10,7 @@ class TaskScreen extends StatefulWidget {
 
 class TaskScreenState extends State<TaskScreen> {
   DatabaseHelper? _database;
+  bool ban = false;
 
   @override
   void initState() {
@@ -22,6 +23,16 @@ class TaskScreenState extends State<TaskScreen> {
   Widget build(BuildContext context) {
     TextEditingController txtFecha = TextEditingController();
     TextEditingController txtDesc = TextEditingController();
+    int idTarea = 0;
+
+    if (ModalRoute.of(context)!.settings.arguments != null) {
+      final tarea = ModalRoute.of(context)!.settings.arguments as Map;
+      txtFecha.text = tarea['fechEntrega'];
+      txtDesc.text = tarea['dscTarea'];
+      idTarea = tarea['idTarea'];
+      ban = true;
+    }
+
     final txtFechaEnt = TextField(
       controller: txtFecha,
       decoration: InputDecoration(border: OutlineInputBorder()),
@@ -34,21 +45,35 @@ class TaskScreenState extends State<TaskScreen> {
 
     final btnGuardar = ElevatedButton(
       onPressed: () {
-        _database!.insertar({
-          'dscTarea': txtDesc.text,
-          'fechaEnt': txtFecha.text,
-        }, 'tblTareas').then((value) {
-          const snackBar = SnackBar(
-            content: Text('¡Tarea registrada correctamente!'),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        });
+        if (!ban) {
+          _database!.insertar({
+            'dscTarea': txtDesc.text,
+            'fechaEnt': txtFecha.text,
+          }, 'tblTareas').then((value) {
+            const snackBar = SnackBar(
+              content: Text('¡Tarea registrada correctamente!'),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          });
+        } else {
+          _database!.actualizar({
+            'idTarea': idTarea,
+            'dscTarea': txtDesc.text,
+            'fechaEnt': txtFecha.text,
+          }, 'tblTareas').then((value) {
+            final snackBar =
+                SnackBar(content: Text('Tarea actualizada correctamente'));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          });
+        }
+        Navigator.pop(context);
       },
       child: Text('Guardar'),
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text('Add Task')),
+      appBar:
+          AppBar(title: ban == false ? Text('Add Task') : Text('Update Task')),
       body: ListView(
         padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
         children: [
