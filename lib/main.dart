@@ -1,3 +1,5 @@
+import 'package:clases/screens/list_task_screen.dart';
+import 'package:clases/screens/task_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:clases/screens/dashboard_screen.dart';
 import 'package:clases/screens/login_screen.dart';
@@ -21,7 +23,9 @@ class MyApp extends StatelessWidget {
       home: const SplashScreen(),
       routes: {
         '/dash': (BuildContext context) => DashboardScreen(),
-        '/login': (BuildContext context) => LoginScreen()
+        '/login': (BuildContext context) => LoginScreen(),
+        '/task': (BuildContext context) => ListTaskScreen(),
+        '/add': (BuildContext context) => TaskScreen(),
       },
     );
   }
