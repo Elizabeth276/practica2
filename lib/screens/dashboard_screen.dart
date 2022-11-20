@@ -36,6 +36,11 @@ class DashboardScreen extends StatelessWidget {
           ListTile(
               leading: Image.asset('assets/hongo.png'),
               trailing: Icon(Icons.chevron_right),
+              title: Text('Base de datos'),
+              onTap: () {}),
+          ListTile(
+              leading: Image.asset('assets/hongo.png'),
+              trailing: Icon(Icons.chevron_right),
               title: Text('Cerrar sesión'),
               onTap: () {
                 Navigator.popUntil(context, ModalRoute.withName('/login'));
