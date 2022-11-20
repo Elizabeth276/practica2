@@ -1,3 +1,4 @@
+import 'package:clases/screens/theme_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
@@ -8,7 +9,9 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).backgroundColor,
+      ),
       drawer: Drawer(
         backgroundColor: Color.fromARGB(255, 226, 133, 26),
         child: ListView(children: [
@@ -49,6 +52,7 @@ class DashboardScreen extends StatelessWidget {
               })
         ]),
       ),
+      body: ThemeScreen(),
     );
   }
 }
