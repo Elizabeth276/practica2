@@ -22,9 +22,13 @@ class TaskScreenState extends State<TaskScreen> {
   Widget build(BuildContext context) {
     TextEditingController txtFecha = TextEditingController();
     TextEditingController txtDesc = TextEditingController();
-    final txtFechaEnt = TextField(controller: txtFecha);
+    final txtFechaEnt = TextField(
+      controller: txtFecha,
+      decoration: InputDecoration(border: OutlineInputBorder()),
+    );
     final txtDescTask = TextField(
       controller: txtDesc,
+      decoration: InputDecoration(border: OutlineInputBorder()),
       maxLines: 8,
     );
 
@@ -33,7 +37,12 @@ class TaskScreenState extends State<TaskScreen> {
         _database!.insertar({
           'dscTarea': txtDesc.text,
           'fechaEnt': txtFecha.text,
-        }, 'tblTareas');
+        }, 'tblTareas').then((value) {
+          const snackBar = SnackBar(
+            content: Text('¡Tarea registrada correctamente!'),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        });
       },
       child: Text('Guardar'),
     );
@@ -41,9 +50,13 @@ class TaskScreenState extends State<TaskScreen> {
     return Scaffold(
       appBar: AppBar(title: Text('Add Task')),
       body: ListView(
+        padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
         children: [
           txtFechaEnt,
-          txtDescTask,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: txtDescTask,
+          ),
           btnGuardar,
         ],
       ),

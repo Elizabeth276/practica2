@@ -1,7 +1,7 @@
 class TareasDAO {
   int? idTarea;
   String? dscTarea;
-  DateTime? fechaEnt;
+  String? fechaEnt;
 
   TareasDAO({this.idTarea, this.dscTarea, this.fechaEnt});
   factory TareasDAO.fromJSON(Map<String, dynamic> mapTarea) {
