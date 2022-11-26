@@ -12,13 +12,13 @@ class ListTaskScreen extends StatefulWidget {
 }
 
 class _ListTaskScreenState extends State<ListTaskScreen> {
-  DatabaseHelper? _database;
+  TareasDAO? _tarea;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _database = DatabaseHelper();
+    _tarea = TareasDAO();
   }
 
   @override
@@ -37,7 +37,7 @@ class _ListTaskScreenState extends State<ListTaskScreen> {
         ],
       ),
       body: FutureBuilder(
-        future: _database!.getAllTareas(),
+        future: _tarea!.getAllTareas(),
         builder: (context, AsyncSnapshot<List<TareasDAO>> snapshot) {
           if (snapshot.hasData)
             return ListView.builder(
@@ -75,9 +75,14 @@ class _ListTaskScreenState extends State<ListTaskScreen> {
                                 actions: [
                                   TextButton(
                                       onPressed: () {
-                                        _database!.eliminar(
-                                            snapshot.data![index].idTarea!,
-                                            'tblTareas');
+                                        _tarea!
+                                            .eliminar(
+                                                snapshot.data![index].idTarea!,
+                                                'tblTareas')
+                                            .then((value) {
+                                          Navigator.pop(context);
+                                          setState(() {});
+                                        });
                                       },
                                       child: Text('Aceptar')),
                                   TextButton(

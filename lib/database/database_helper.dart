@@ -3,8 +3,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../models/tareas_model.dart';
-
 class DatabaseHelper {
   static final nombreDB = 'TAREASBD';
   static final versionBD = 1;
@@ -26,38 +24,14 @@ class DatabaseHelper {
   }
 
   _crearTablas(Database db, int version) async {
-    String query =
+    String tblTareas =
         "CREATE TABLE tblTareas( idTarea INTEGER PRIMARY KEY, dscTarea VARCHAR(100), fechaEnt DATE)";
-    db.execute(query);
-  }
+    String tblUser =
+        "CREATE TABLE tblUser(idUser INTEGER PRIMARY KEY, fullName varchar(70), photo varchar(250), email varchar(70), phone varchar(10), githubPage varchar(70))";
 
-  Future<int> insertar(Map<String, dynamic> row, String nomTabla) async {
-    var conexion = await database;
-    return await conexion.insert(nomTabla, row);
-  }
-
-  Future<int> actualizar(Map<String, dynamic> row, String nomTabla) async {
-    var conexion = await database;
-    return await conexion.update(
-      nomTabla,
-      row,
-      where: 'idTarea = ?',
-      whereArgs: [row['idTarea']],
-    );
-  }
-
-  Future<int> eliminar(int idTarea, String nomTabla) async {
-    var conexion = await database;
-    return await conexion.delete(
-      nomTabla,
-      where: 'idTarea=?',
-      whereArgs: [idTarea],
-    );
-  }
-
-  Future<List<TareasDAO>> getAllTareas() async {
-    var conexion = await database;
-    var result = await conexion.query('tblTareas');
-    return result.map((mapTarea) => TareasDAO.fromJSON(mapTarea)).toList();
+    var tablas = [tblTareas, tblUser];
+    tablas.forEach((sql) {
+      db.execute(sql);
+    });
   }
 }

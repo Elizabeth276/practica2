@@ -1,4 +1,5 @@
 import 'package:clases/database/database_helper.dart';
+import 'package:clases/models/tareas_model.dart';
 import 'package:flutter/material.dart';
 
 class TaskScreen extends StatefulWidget {
@@ -9,14 +10,14 @@ class TaskScreen extends StatefulWidget {
 }
 
 class TaskScreenState extends State<TaskScreen> {
-  DatabaseHelper? _database;
+  TareasDAO? _tarea;
   bool ban = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _database = DatabaseHelper();
+    _tarea = TareasDAO();
   }
 
   @override
@@ -46,7 +47,7 @@ class TaskScreenState extends State<TaskScreen> {
     final btnGuardar = ElevatedButton(
       onPressed: () {
         if (!ban) {
-          _database!.insertar({
+          _tarea!.insertar({
             'dscTarea': txtDesc.text,
             'fechaEnt': txtFecha.text,
           }, 'tblTareas').then((value) {
@@ -56,7 +57,7 @@ class TaskScreenState extends State<TaskScreen> {
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           });
         } else {
-          _database!.actualizar({
+          _tarea!.actualizar({
             'idTarea': idTarea,
             'dscTarea': txtDesc.text,
             'fechaEnt': txtFecha.text,

@@ -1,5 +1,6 @@
 import 'package:clases/provider/theme_provider.dart';
 import 'package:clases/screens/list_task_screen.dart';
+import 'package:clases/screens/profile_screen.dart';
 import 'package:clases/screens/task_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:clases/screens/dashboard_screen.dart';
@@ -39,6 +40,7 @@ class PMSNApp extends StatelessWidget {
         '/login': (BuildContext context) => LoginScreen(),
         '/task': (BuildContext context) => ListTaskScreen(),
         '/add': (BuildContext context) => TaskScreen(),
+        '/profile': (BuildContext context) => ProfileScreen(),
       },
     );
   }
