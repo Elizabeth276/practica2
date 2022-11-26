@@ -1,5 +1,5 @@
-import 'package:clases/database/database_helper.dart';
-import 'package:clases/models/tareas_model.dart';
+import 'package:practica2/database/database_helper.dart';
+import 'package:practica2/models/tareas_model.dart';
 import 'package:flutter/material.dart';
 
 class TaskScreen extends StatefulWidget {

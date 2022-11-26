@@ -1,11 +1,11 @@
-import 'package:clases/provider/theme_provider.dart';
-import 'package:clases/screens/list_task_screen.dart';
-import 'package:clases/screens/profile_screen.dart';
-import 'package:clases/screens/task_screen.dart';
+import 'package:practica2/provider/theme_provider.dart';
+import 'package:practica2/screens/list_task_screen.dart';
+import 'package:practica2/screens/profile_screen.dart';
+import 'package:practica2/screens/task_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:clases/screens/dashboard_screen.dart';
-import 'package:clases/screens/login_screen.dart';
-import 'package:clases/screens/splash_screen.dart';
+import 'package:practica2/screens/dashboard_screen.dart';
+import 'package:practica2/screens/login_screen.dart';
+import 'package:practica2/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() async {

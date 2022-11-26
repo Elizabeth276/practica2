@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:clases/screens/theme_screen.dart';
+import 'package:practica2/screens/theme_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:clases/models/user_model.dart';
+import 'package:practica2/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatefulWidget {

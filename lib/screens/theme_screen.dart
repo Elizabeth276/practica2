@@ -1,5 +1,5 @@
-import 'package:clases/provider/theme_provider.dart';
-import 'package:clases/settings/styles_settings.dart';
+import 'package:practica2/provider/theme_provider.dart';
+import 'package:practica2/settings/styles_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
